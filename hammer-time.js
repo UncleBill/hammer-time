@@ -14,11 +14,9 @@
 	var MO = window.MutationObserver || window.WebKitMutationObserver;
 	var touchevents = ( "ontouchstart" in window ) ||
 	                  ( window.DocumentTouch && document instanceof DocumentTouch );
-	var nativeTouchAction = document.documentElement.style[ "touch-action" ] !== undefined ||
-			                            document.documentElement.style[ "-ms-touch-action" ];
 
 // If there is native touch action bail the hammer has already dropped
-if ( nativeTouchAction || !touchevents || !MO ) {
+if ( !touchevents || !MO ) {
 	return;
 }
 
@@ -147,11 +145,9 @@ window.Hammer.time = {
 	},
 	installStartEvents: function() {
 		document.addEventListener( "touchstart", this.touchStart.bind( this ) );
-		document.addEventListener( "mousedown", this.touchStart.bind( this ) );
 	},
 	installEndEvents: function() {
 		document.addEventListener( "touchend", this.touchHandler.bind( this ), true );
-		document.addEventListener( "mouseup", this.touchHandler.bind( this ), true );
 	},
 	installObserver: function() {
 
